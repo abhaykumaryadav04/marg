@@ -58,6 +58,12 @@ public class SecurityConfig {
                         .hasRole("VERIFIER")
                         .requestMatchers("/api/trainee/**")
                         .hasRole("TRAINEE")
+                        .requestMatchers("/api/assessments/**")
+                        .hasRole("TRAINEE")
+                        .requestMatchers("/api/skills/**")
+                        .hasRole("TRAINEE")
+                        .requestMatchers("/api/skill-gaps/**")
+                        .hasRole("TRAINEE")
                         .anyRequest()
                         .authenticated())
                         .oauth2ResourceServer(oauth2 ->

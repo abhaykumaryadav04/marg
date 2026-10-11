@@ -11,4 +11,6 @@ import com.forensiq.marg.assessment.entity.AssessmentAttempt;
 @Repository 
 public interface AssessmentAttemptRepo extends  JpaRepository<AssessmentAttempt,UUID>{
 Optional<AssessmentAttempt> findByIdAndUserId(UUID id,UUID userId);
+Optional<AssessmentAttempt> findFirstByUser_IdOrderByStartedAtDesc(UUID userId);
+
 }
