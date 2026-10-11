@@ -1,6 +1,7 @@
 package com.forensiq.marg.assessment.dto;
 
 import java.util.List;
+import java.util.UUID;
 
 public record CompetencyResponse(
 

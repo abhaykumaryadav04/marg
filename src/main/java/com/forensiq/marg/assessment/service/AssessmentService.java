@@ -165,7 +165,7 @@ List<AssessmentAttempt> attempts=assessmentAttemptRepo.findAll().stream()
                                                        AssessmentAttempt::getStartedAt
                                                                 ).reversed())
                                                                 .toList();
-     if (assessments.isEmpty()) {
+     if (attempts.isEmpty()) {
 
         return new CompetencyResponse(
                 null,
