@@ -24,7 +24,7 @@ public class CompetencyScore {
 @GeneratedValue 
 private  UUID id;
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "assessment_id", nullable = false)
+    @JoinColumn(name = "assessmentId", nullable = false)
     private AssessmentAttempt assessment;
 
     @Column(nullable = false)

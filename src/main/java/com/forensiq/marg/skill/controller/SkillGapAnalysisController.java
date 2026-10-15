@@ -19,8 +19,11 @@ import jakarta.validation.Valid;
 @RestController 
 @RequestMapping("/api/skill-gaps")
 public class SkillGapAnalysisController {
-    @Autowired   
-     private  SkillAnalysisService skillGapAnalysisService;
+    private final  SkillAnalysisService skillGapAnalysisService;
+
+    SkillGapAnalysisController(SkillAnalysisService skillGapAnalysisService) {
+        this.skillGapAnalysisService = skillGapAnalysisService;
+    }
        @PostMapping("/analyze")
     public ResponseEntity<SkillGapAnalysisResponse> analyze( Authentication authentication,
             @Valid @RequestBody SkillGapAnalysisRequest request) {

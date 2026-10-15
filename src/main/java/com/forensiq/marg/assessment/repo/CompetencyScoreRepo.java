@@ -14,6 +14,6 @@ import com.forensiq.marg.assessment.entity.CompetencyScore;
 public interface CompetencyScoreRepo extends  JpaRepository<CompetencyScore,UUID>{
 List<CompetencyScore> findByAssessmentId(UUID assessmentId);
 
-Optional<CompetencyScore> findByAssessmentIdAndSkill(UUID assessmentid, String skill);
+Optional<CompetencyScore> findByAssessmentIdAndSkill(UUID assessmentId, String skill);
 
 }
