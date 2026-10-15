@@ -56,7 +56,7 @@ public class SecurityConfig {
                         .hasRole("PROVIDER")
                         .requestMatchers("/api/verifier/**")
                         .hasRole("VERIFIER")
-                        .requestMatchers("/api/trainee/**")
+                        .requestMatchers("/api/trainees/**")
                         .hasRole("TRAINEE")
                         .requestMatchers("/api/assessments/**")
                         .hasRole("TRAINEE")

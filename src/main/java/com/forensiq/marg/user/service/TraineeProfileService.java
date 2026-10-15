@@ -2,7 +2,7 @@ package com.forensiq.marg.user.service;
 
 import java.util.UUID;
 
-import org.springframework.beans.factory.annotation.Autowired;
+
 import org.springframework.stereotype.Service;
 
 import com.forensiq.marg.user.dto.TraineeProfileRequest;
@@ -16,10 +16,13 @@ import com.forensiq.marg.user.repo.UserRepo;
 
 @Service 
 public class TraineeProfileService {
-    @Autowired 
-    private  TraineeProfileRepo taineeProfileRepo;
-    @Autowired 
-    private UserRepo userRepo;
+    private final  TraineeProfileRepo taineeProfileRepo;
+    private final UserRepo userRepo;
+
+    TraineeProfileService(TraineeProfileRepo taineeProfileRepo, UserRepo userRepo) {
+        this.taineeProfileRepo = taineeProfileRepo;
+        this.userRepo = userRepo;
+    }
 
     private User getTraineeUser(UUID userId){
         User user=userRepo.findById(userId).orElseThrow(()-> new RuntimeException("User doesn't exists"));

@@ -22,10 +22,15 @@ import jakarta.validation.Valid;
 @RestController 
 @RequestMapping ("/api/skills")
 public class SkillExtractionController {
+      @Autowired
+      private  SkillAnalysisService skillAnalysisService;
       @Autowired 
-    private SkillAnalysisService skillAnalysisService;
-    @Autowired 
-    private SkillExtractionService skillExtractionService;
+    private  SkillExtractionService skillExtractionService;
+
+    SkillExtractionController(SkillAnalysisService skillAnalysisService, SkillExtractionService skillExtractionService) {
+        this.skillAnalysisService = skillAnalysisService;
+        this.skillExtractionService = skillExtractionService;
+    }
     @PostMapping ("/extract")
     public ResponseEntity<SkillExtractionResponse> getSkills(@RequestBody @Valid  SkillExtractionRequest request){
         return ResponseEntity.ok(skillExtractionService.extractSkills(request));

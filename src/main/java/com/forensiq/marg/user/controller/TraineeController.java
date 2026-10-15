@@ -2,7 +2,7 @@ package com.forensiq.marg.user.controller;
 
 import java.util.UUID;
 
-import org.springframework.beans.factory.annotation.Autowired;
+
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -20,8 +20,11 @@ import jakarta.validation.Valid;
 @RestController 
 @RequestMapping ("/api/trainee/me")
 public class TraineeController {
-@Autowired 
-private  TraineeProfileService traineeProfileService;
+private final  TraineeProfileService traineeProfileService;
+
+  TraineeController(TraineeProfileService traineeProfileService) {
+    this.traineeProfileService = traineeProfileService;
+  }
 @GetMapping 
 public  ResponseEntity<TraineeProfileResponse> getMyProflie(Authentication authentication){
     UUID userId=UUID.fromString(authentication.getName());

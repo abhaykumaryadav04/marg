@@ -3,11 +3,12 @@ package com.forensiq.marg.assessment.service;
 import java.time.LocalDateTime;
 
 import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Map;
 import java.util.UUID;
 
-import org.springframework.beans.factory.annotation.Autowired;
+
 import org.springframework.stereotype.Service;
 
 import com.forensiq.marg.assessment.client.Model1Client;
@@ -28,16 +29,21 @@ import com.forensiq.marg.user.repo.UserRepo;
 
 @Service 
 public class AssessmentService {
-    @Autowired 
-private UserRepo userRepo;
-@Autowired
-private Model1Client model1Client;
-@Autowired 
-private AssessmentAttemptRepo assessmentAttemptRepo;
-@Autowired 
-private  AssessmentResponseRepo assessmentResponseRepo;
-@Autowired 
-private CompetencyScoreRepo competencyScoreRepo;
+    private final UserRepo userRepo;
+private final Model1Client model1Client;
+private final AssessmentAttemptRepo assessmentAttemptRepo;
+private final  AssessmentResponseRepo assessmentResponseRepo;
+private final CompetencyScoreRepo competencyScoreRepo;
+
+  public AssessmentService(UserRepo userRepo, AssessmentAttemptRepo assessmentAttemptRepo,
+         CompetencyScoreRepo competencyScoreRepo ,AssessmentResponseRepo assessmentResponseRepo
+        ,Model1Client model1Client) {
+    this.userRepo = userRepo;
+    this.assessmentAttemptRepo = assessmentAttemptRepo;
+    this.assessmentResponseRepo = assessmentResponseRepo;
+    this.competencyScoreRepo = competencyScoreRepo;
+    this.model1Client=model1Client;
+  }
 
 public  StartAssessmentResponse startAssessmentResponse(UUID userId){
     User user=userRepo.findById(userId).orElseThrow(()-> new RuntimeException("User not found"));

@@ -16,7 +16,11 @@ import com.forensiq.marg.skill.service.SkillAnalysisService;
 @RequestMapping ("/api/trainees/me")
 public class TraineeSkillController {
     @Autowired 
-    private SkillAnalysisService skillAnalysisService;
+    private  SkillAnalysisService skillAnalysisService;
+
+    TraineeSkillController(SkillAnalysisService skillAnalysisService) {
+        this.skillAnalysisService = skillAnalysisService;
+    }
       @GetMapping("/skill-gaps")
     public ResponseEntity<SkillGapAnalysisResponse> getMySkillGaps(
             Authentication authentication

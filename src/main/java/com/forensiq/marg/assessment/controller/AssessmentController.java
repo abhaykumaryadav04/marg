@@ -3,7 +3,7 @@ package com.forensiq.marg.assessment.controller;
 
 import java.util.UUID;
 
-import org.springframework.beans.factory.annotation.Autowired;
+
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -24,8 +24,11 @@ import jakarta.validation.Valid;
 @RestController 
 @RequestMapping ("/api/assessments")
 public class AssessmentController {
-@Autowired 
-private AssessmentService assessmentService;
+private final AssessmentService assessmentService;
+
+  AssessmentController(AssessmentService assessmentService) {
+    this.assessmentService = assessmentService;
+  }
 @PostMapping ("/start")
 public ResponseEntity<StartAssessmentResponse> start(Authentication authentication){
     UUID userId=UUID.fromString(authentication.getName());
@@ -36,7 +39,7 @@ public ResponseEntity<AnswerResponse> answer(@PathVariable  UUID assessmentId,@V
     UUID userId=UUID.fromString(authentication.getName());
     return ResponseEntity.ok(assessmentService.answerQuestion(userId, assessmentId, request));
 }
-@GetMapping ("/{assessmentId")
+@GetMapping ("/{assessmentId}")
 public ResponseEntity<AssessmentDetailsResponse> assessmentDetails(@PathVariable UUID assessmentId,Authentication authentication){
     UUID userId=UUID.fromString(authentication.getName());
     return ResponseEntity.ok(assessmentService.getAssessment(userId, assessmentId));

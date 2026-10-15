@@ -3,14 +3,17 @@ package com.forensiq.marg.assessment.client;
 import java.util.List;
 import java.util.Map;
 
-import org.springframework.beans.factory.annotation.Autowired;
+
 import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;
 
 @Component 
 public class Model1Client {
-@Autowired 
-private  RestTemplate restTemplate;
+private final  RestTemplate restTemplate;
+
+    Model1Client(RestTemplate restTemplate) {
+        this.restTemplate = restTemplate;
+    }
 public  NextQuestionResponse nextQuestionResponse(List<ResponseData> responseDatas){
      Model1Request request =
                 new Model1Request(responseDatas);

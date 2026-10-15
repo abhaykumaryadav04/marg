@@ -19,9 +19,13 @@ import com.forensiq.marg.skill.dto.SkillExtractionResponse;
 @Component 
 public class Model2Client {
     @Autowired 
-  private RestTemplate restTemplate;
+    private   RestTemplate restTemplate;
   @Value("${ml.model2.base-url}")
-  private String base2Url; 
+  private String base2Url;
+
+  Model2Client(RestTemplate restTemplate) {
+    this.restTemplate = restTemplate;
+  } 
   
   public SkillExtractionResponse skillExtractionResponse(String text){
    String url =base2Url + "/api/ml/skill/predict";

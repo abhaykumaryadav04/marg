@@ -5,7 +5,7 @@ import java.util.Map;
 import java.util.UUID;
 import java.util.stream.Collectors;
 
-import org.springframework.beans.factory.annotation.Autowired;
+
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -23,14 +23,17 @@ import com.forensiq.marg.user.repo.TraineeProfileRepo;
 
 @Service 
 public class SkillAnalysisService {
-    @Autowired 
- private AssessmentAttemptRepo assessmentAttemptRepo;
- @Autowired 
- private  CompetencyScoreRepo competencyScoreRepo;
- @Autowired 
- private Model3Client model3Client;
- @Autowired 
- private TraineeProfileRepo traineeProfile;
+    private final AssessmentAttemptRepo assessmentAttemptRepo;
+ private final  CompetencyScoreRepo competencyScoreRepo;
+ private final Model3Client model3Client;
+ private final TraineeProfileRepo traineeProfile;
+
+  SkillAnalysisService(AssessmentAttemptRepo assessmentAttemptRepo, CompetencyScoreRepo competencyScoreRepo, TraineeProfileRepo traineeProfile, Model3Client model3Client) {
+    this.assessmentAttemptRepo = assessmentAttemptRepo;
+    this.competencyScoreRepo = competencyScoreRepo;
+    this.traineeProfile = traineeProfile;
+    this.model3Client = model3Client;
+  }
 
   @Transactional(readOnly = true)
   public SkillGapAnalysisResponse getSkillGapAnalysis(SkillGapAnalysisRequest request,UUID userId){

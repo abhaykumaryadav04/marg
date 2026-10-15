@@ -18,10 +18,14 @@ import com.fasterxml.jackson.annotation.JsonAlias;
 @Component 
 public class Model3Client {
 @Autowired 
-private RestTemplate restTemplate;
+private  RestTemplate restTemplate;
 
-@Value ("{ml.model3.base-url}")
+@Value("${ml.model3.base-url}")
 private String model3baseUrl;
+
+    Model3Client(RestTemplate restTemplate) {
+        this.restTemplate = restTemplate;
+    }
 
 public Model3Response getSkillGap( String targetRole,
             Map<String, Double> competencies){
