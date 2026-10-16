@@ -33,3 +33,5 @@ build/
 .vscode/
 marg/src/main/resources/application.properties
 /src/main/resources/application.properties
+main/resources/application.properties
+src/main/resources/application.properties
