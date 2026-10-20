@@ -44,29 +44,32 @@ public class SecurityConfig {
     public SecurityFilterChain securityFilterChain(HttpSecurity http, JwtAuthenticationConverter jwtAuthenticationConverter){
       return http.csrf(csrf->csrf.disable())
                   .sessionManagement(session-> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
-                  .authorizeHttpRequests(auth->auth.requestMatchers(
-                                "/api/auth/register",
-                                "/api/auth/login",
-                                "/api/test",
-                                "/actuator/health"
-                        ).permitAll()
-                        .requestMatchers("/api/admin/**")
-                        .hasRole("ADMIN")
-                        .requestMatchers("/api/provider/**")
-                        .hasRole("PROVIDER")
-                        .requestMatchers("/api/verifier/**")
-                        .hasRole("VERIFIER")
-                        .requestMatchers("/api/trainees/**")
-                        .hasRole("TRAINEE")
-                        .requestMatchers("/api/assessments/**")
-                        .hasRole("TRAINEE")
-                        .requestMatchers("/api/skills/**")
-                        .hasRole("TRAINEE")
-                        .requestMatchers("/api/skill-gaps/**")
-                        .hasRole("TRAINEE")
-                        .anyRequest()
-                        .authenticated())
-                        .oauth2ResourceServer(oauth2 ->
+                 .authorizeHttpRequests(auth -> auth
+        .requestMatchers(
+                "/api/auth/register",
+                "/api/auth/login",
+                "/api/test",
+                "/actuator/health"
+        ).permitAll()
+        .requestMatchers("/api/admin/**")
+        .hasRole("ADMIN")
+        .requestMatchers("/api/provider/**")
+        .hasRole("PROVIDER")
+        .requestMatchers("/api/verifier/**")
+        .hasRole("VERIFIER")
+        .requestMatchers("/api/trainee/**")
+        .hasRole("TRAINEE")
+        .requestMatchers("/api/trainees/**")
+        .hasRole("TRAINEE")
+        .requestMatchers("/api/assessments/**")
+        .hasRole("TRAINEE")
+        .requestMatchers("/api/skills/**")
+        .hasRole("TRAINEE")
+        .requestMatchers("/api/skill-gaps/**")
+        .hasRole("TRAINEE")
+        .anyRequest()
+        .authenticated())
+        .oauth2ResourceServer(oauth2 ->
                         oauth2.jwt(jwt ->
                                 jwt.jwtAuthenticationConverter(
                                         jwtAuthenticationConverter
