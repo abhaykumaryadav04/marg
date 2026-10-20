@@ -229,6 +229,21 @@ public class FollowUpService {
 
         return mapToResponse(saved);
    }
+      @Transactional(readOnly = true)
+    public FollowUpResponse getMyFollowUp(
+            UUID traineeId,
+            UUID followUpId
+    ) {
+
+        getTrainee(traineeId);
+
+        FollowUp followUp = getOwnedFollowUp(
+                followUpId,
+                traineeId
+        );
+
+        return mapToResponse(followUp);
+    }
 
 
 }
